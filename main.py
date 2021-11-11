@@ -9,11 +9,11 @@ server = Flask(__name__)
 logger = telebot.logger
 logger.setLevel(logging.DEBUG)
 
-@bot.message_handler(commands=["start"])
-def start(message):
-    username = message.from_user.username
-    chatid = message.from_user.chatid
-    bot.reply_to(message, f"Hell {username}")
+# @bot.message_handler(commands=["start"])
+# def start(message):
+#     username = message.from_user.username
+#     chatid = message.from_user.chatid
+#     bot.reply_to(message, f"Hell {username}")
 
 @bot.message_handler(content_types=["text"])
 def repeat_all_messages(message):
