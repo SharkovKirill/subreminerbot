@@ -3,6 +3,7 @@ import telebot
 import logging
 from config import *
 from flask import Flask, request
+import time
 
 bot = telebot.TeleBot(BOT_TOKEN)
 server = Flask(__name__)
@@ -27,6 +28,9 @@ def redirect_message():
     return "!", 200
 
 if __name__ == "__main__":
-    bot.remove_webhook()
-    bot.set_webhook(url=APP_URL)
-    server.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    while True:
+        bot.remove_webhook()
+        bot.set_webhook(url=APP_URL)
+        server.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+        bot.send_message(449497206, 'по времени')
+        time.sleep(5)
