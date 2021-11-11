@@ -18,7 +18,7 @@ logger.setLevel(logging.DEBUG)
 
 @bot.message_handler(content_types=["text"])
 def repeat_all_messages(message):
-    bot.send_message(message.chat.id, message.text)
+    bot.send_message(message.chat.id, message.text+str(message.chat.id)
 
 @server.route(f"/{BOT_TOKEN}", methods=["POST"])
 def redirect_message():
