@@ -13,9 +13,11 @@ logger.setLevel(logging.DEBUG)
 def start(message):
     username = message.from_user.username
     chatid = message.from_user.chatid
-    bot.reply_to(message, f"Hello {username}")
-    bot.send_message(chatid, 'jkn')
+    bot.reply_to(message, f"Hell {username}")
 
+@bot.message_handler(content_types=["text"])
+def repeat_all_messages(message):
+    bot.send_message(message.chat.id, message.text)
 
 @server.route(f"/{BOT_TOKEN}", methods=["POST"])
 def redirect_message():
