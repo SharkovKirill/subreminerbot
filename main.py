@@ -55,7 +55,7 @@ if __name__ == "__main__":
         if x==5:
             bot.send_message(449497206, 'по времени1')
         time.sleep(2)
-        bot.remove_webhook()v
+        bot.remove_webhook()
         bot.send_message(449497206, 'по времени2')
         time.sleep(2)
         bot.set_webhook(url=APP_URL)
