@@ -13,6 +13,7 @@ logger.setLevel(logging.DEBUG)
 def start(message):
     username = message.from_user.username
     bot.reply_to(message, f"Hello {username}")
+    bot.send_message(CHANNEL_NAME, "LSKDLSKM")
 
 @server.route(f"/{BOT_TOKEN}", methods=["POST"])
 def redirect_message():
