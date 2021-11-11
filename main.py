@@ -4,8 +4,9 @@ import logging
 from config import *
 from flask import Flask, request
 import time
-from apscheduler.schedulers.background import BackgroundScheduler
-
+# from apscheduler.schedulers.background import BackgroundScheduler
+import atexit
+from apscheduler.scheduler import Scheduler
 
 
 
@@ -41,13 +42,14 @@ def redirect_message():
     return "!", 200
 
 
-def sensor():
-    bot.send_message(449497206, 'верхний')
+cron = Scheduler(daemon=True)
+cron.start()
 
-sched = BackgroundScheduler(daemon=True)
-sched.add_job(sensor,'interval',seconds=10)
-sched.start()
+@cron.interval_schedule(hours=1)
+def job_function():
+    bot.send_message(449497206, 'по времени1')
 
+atexit.register(lambda: cron.shutdown(wait=False))
 
 if __name__ == "__main__":
     x=3
