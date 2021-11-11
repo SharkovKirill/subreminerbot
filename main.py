@@ -28,8 +28,10 @@ def redirect_message():
     return "!", 200
 
 if __name__ == "__main__":
+    x=3
     while True:
-        bot.send_message(449497206, 'по времени1')
+        if x==5:
+            bot.send_message(449497206, 'по времени1')
         time.sleep(2)
         bot.remove_webhook()
         bot.send_message(449497206, 'по времени2')
