@@ -4,6 +4,19 @@ import logging
 from config import *
 from flask import Flask, request
 import time
+from apscheduler.schedulers.background import BackgroundScheduler
+
+
+
+
+
+# def test():
+#     bot.send_message(449497206, 'нижний')
+# job = sched.add_interval_job(test, seconds=90)
+
+
+
+
 
 bot = telebot.TeleBot(BOT_TOKEN)
 server = Flask(__name__)
@@ -27,13 +40,22 @@ def redirect_message():
     bot.process_new_updates([update])
     return "!", 200
 
+
+def sensor():
+    bot.send_message(449497206, 'верхний')
+
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(sensor,'interval',seconds=10)
+sched.start()
+
+
 if __name__ == "__main__":
     x=3
     while True:
         if x==5:
             bot.send_message(449497206, 'по времени1')
         time.sleep(2)
-        bot.remove_webhook()
+        bot.remove_webhook()v
         bot.send_message(449497206, 'по времени2')
         time.sleep(2)
         bot.set_webhook(url=APP_URL)
